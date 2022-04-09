@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class FabricaDeConexao {
 	
-	private String url  	= "jdbc://localhost/caelum";
+	private String url  	= "jdbc:mysql://localhost/caelum";
 	private String user 	= "root";
 	private String password = "admin";
 	
