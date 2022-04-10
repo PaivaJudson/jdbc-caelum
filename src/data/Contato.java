@@ -16,7 +16,14 @@ public class Contato {
 		this.endereco = endereco;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Contato [id=" + id + ", nome=" + nome + ", email=" + email + ", endereco=" + endereco + "]";
+	}
+
+
+
+
 	public Long getId() {
 		return id;
 	}

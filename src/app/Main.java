@@ -1,47 +1,27 @@
 package app;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import data.Contato;
-import data.FabricaDeConexao;
-
+import data.ContatoDao;
 
 public class Main {
 	
-	static Connection conexao;
-	
 	public static void main(String[] args) throws SQLException {
 		
-		conexao = new FabricaDeConexao().getConnection();
-		System.out.println("Conexão aberta!");
 		
-		Contato contato = new Contato("Quissanga Paiva", "judson.paiva@isptec.co.ao", "Luanda - Angola");
+		Contato contato = new Contato("QUISSANGA COGE", "judson.paiva@isptec.co.ao", "Luanda - Angola");
+		ContatoDao contatoDao = new ContatoDao();
 		
-		inserirRegisto(contato);
-		conexao.close();
+		//boolean res = contatoDao.inserirRegisto(contato);
+		//System.out.println(res);
 		
-	}
-	
-	public static boolean inserirRegisto(Contato contato) {
-
-		String querySql = "INSERT INTO CONTATO(NOME, EMAIL, ENDERECO)" +
-						  "VALUES(?,?,?)";
-		
-		try(PreparedStatement stm = conexao.prepareStatement(querySql);){
-			stm.setString(1, contato.getNome());
-			stm.setString(2, contato.getEmail());
-			stm.setString(3, contato.getEndereco());
-			stm.execute();
-		}catch(SQLException err) {
-			err.printStackTrace();
+		List<Contato> lista = contatoDao.pesquisarRegisto(contato);
+		//for(Contato contato1 lista) {
+			
 		}
-		return true;
-	}
-	
-	public static void verRegistos() {
 		
 	}
-
 }
